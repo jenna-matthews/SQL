@@ -67,3 +67,6 @@ select * from v$version;
 
 --get date part from date field
 extract(month from [date_field])
+
+--get everything before first occurence of a character
+select regexp_substr(objective_code, '[^.]+', 1, 1) as domain_code, objective_code
