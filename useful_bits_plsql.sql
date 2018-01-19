@@ -73,3 +73,6 @@ select regexp_substr(objective_code, '[^.]+', 1, 1) as domain_code, objective_co
 
 --oldest of two dates:
 least([date1],[date2])
+
+--last day of previous month (truncate if matching to another truncated date)
+last_day(add_months(sysdate,-1))
