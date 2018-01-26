@@ -33,6 +33,18 @@ and co.comments is not NULL
 set comments = new_comments
 ;
 
+--update based on join where view is not updatable
+update LAX_STUD_DURATION set LAX_STUD_DURATION.course_active_date = ( 
+    select
+      case when row_number () over (partition by student_pidm, term_code order by course_end_date) = 1 
+          then term_start_date else lag(course_end_date) over (partition by student_pidm, term_code order by course_end_date) end as cad
+      from LAX_STUD_DURATION a 
+    where course_active_date is NULL  
+      and LAX_STUD_DURATION.stud_duration_id = a.stud_duration_id
+  ) ;
+
+
+
 --find all of the tables or views referenced by a view list
 select * from sys.all_dependencies
 where type = 'VIEW' 
