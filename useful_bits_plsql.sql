@@ -91,3 +91,16 @@ least([date1],[date2])
 
 --last day of previous month (truncate if matching to another truncated date)
 last_day(add_months(sysdate,-1))
+
+--create index on student_pidm & term_code combination
+CREATE UNIQUE INDEX stud_dur3 ON LAX_STUD_DURATION_PREP3(student_pidm, term_code, course_number);
+
+--gather stats for the table
+begin 
+  	DBMS_STATS.GATHER_TABLE_STATS (
+  		--owner name should be changed to reflect new schema
+  	ownname => '"WGUBISELECT"',
+    tabname => '"LAX_STUD_DURATION_PREP3"',
+    estimate_percent => 1
+    );
+end;
