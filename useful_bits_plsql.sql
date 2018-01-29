@@ -104,3 +104,13 @@ begin
     estimate_percent => 1
     );
 end;
+
+--create trigger to update the LAX_modified date automatically
+set define off;
+create or replace
+TRIGGER WGUBISELECT.stud_crs_duration_update
+BEFORE INSERT OR UPDATE ON WGUBISELECT.LAX_CRS_DURATION
+FOR EACH ROW
+BEGIN
+   :new.LAX_modified := SYSTIMESTAMP;
+END; 
