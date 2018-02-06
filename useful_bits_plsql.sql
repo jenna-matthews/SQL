@@ -114,3 +114,12 @@ FOR EACH ROW
 BEGIN
    :new.LAX_modified := SYSTIMESTAMP;
 END; 
+
+--t test in SQL
+select course_number, count(*) as N_count
+  ,avg(decode(finished_course,'0',CCR,NULL)) CCR_finished_course
+  ,avg(decode(finished_course,'1',CCR,NULL)) CCR_failed_course
+  ,stats_t_test_indep(finished_course,CCR, 'STATISTIC', '1') t_observed
+  ,stats_t_test_indep(finished_course, CCR) two_sided_p_value
+from JO_TEST_CCR_DIFF_3
+group by rollup (course_number)
