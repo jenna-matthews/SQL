@@ -123,3 +123,8 @@ select course_number, count(*) as N_count
   ,stats_t_test_indep(finished_course, CCR) two_sided_p_value
 from JO_TEST_CCR_DIFF_3
 group by rollup (course_number)
+
+--calculate percentile rank
+select term_end_date, course_number, course_version, empowering_1
+  ,percent_rank() over (partition by term_end_date order by empowering_1) as empower_ranking
+from jo_crs_rank_prep2 
