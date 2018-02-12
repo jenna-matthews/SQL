@@ -95,6 +95,9 @@ last_day(add_months(sysdate,-1))
 --create index on student_pidm & term_code combination
 CREATE UNIQUE INDEX stud_dur3 ON LAX_STUD_DURATION_PREP3(student_pidm, term_code, course_number);
 
+--a non-unique index
+CREATE INDEX stud_crs_pass ON jo_stud_crs_passed(student_pidm, course_number);
+
 --gather stats for the table
 begin 
   	DBMS_STATS.GATHER_TABLE_STATS (
