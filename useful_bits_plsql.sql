@@ -62,7 +62,7 @@ select distinct(referenced_name) from
     and name in ('VW_RST_STUDENT','VW_RST_ASSESSMENT')
   )vw_dep; --originally abbreviated as 'vd' which was determined to be inappropriate
   
-  --search for a table or view based on the name (or part of it)
+--search for a table or view based on the name (or part of it)
 select * from ALL_OBJECTS
 where owner='WGUBI' and OBJECT_TYPE in ('TABLE','VIEW')
 and OBJECT_NAME like '%COURSE_VERSION%';
@@ -131,3 +131,13 @@ group by rollup (course_number)
 select term_end_date, course_number, course_version, empowering_1
   ,percent_rank() over (partition by term_end_date order by empowering_1) as empower_ranking
 from jo_crs_rank_prep2 
+
+--alter table change column datatype (column must be empty to make the change)
+alter table [table_name]
+modify [column_name] [new_data_type];
+
+--cast to a datatype in table creation (as a select statement from existing table/view)
+create table jo_stud_crs_passed as 
+select cast(student_pidm as varchar(15)) student_pidm, calendar_date, course_number 
+  ,pass_sequence, course_completion
+from wgubi.vw_rst_assessment; 
