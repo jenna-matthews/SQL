@@ -143,6 +143,7 @@ select cast(student_pidm as varchar(15)) student_pidm, calendar_date, course_num
 from wgubi.vw_rst_assessment; 
 
 --running totals (can be handled for multiple fields at a time as shown)
+--can use count(*) instead of sum([field_name]) if you want all rows preceding this row.
 select student_pidm, calendar_date
   ,sum(not_engage) over (partition by student_pidm order by calendar_date rows unbounded preceding) as cnt_not_engage
   ,sum(not_attempt) over (partition by student_pidm order by calendar_date rows unbounded preceding) as cnt_not_attempt
