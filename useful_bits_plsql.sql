@@ -141,3 +141,12 @@ create table jo_stud_crs_passed as
 select cast(student_pidm as varchar(15)) student_pidm, calendar_date, course_number 
   ,pass_sequence, course_completion
 from wgubi.vw_rst_assessment; 
+
+--running totals (can be handled for multiple fields at a time as shown)
+select student_pidm, calendar_date
+  ,sum(not_engage) over (partition by student_pidm order by calendar_date rows unbounded preceding) as cnt_not_engage
+  ,sum(not_attempt) over (partition by student_pidm order by calendar_date rows unbounded preceding) as cnt_not_attempt
+  ,sum(not_pass) over (partition by student_pidm order by calendar_date rows unbounded preceding) as cnt_not_pass
+  ,sum(pass_not_engage) over (partition by student_pidm order by calendar_date rows unbounded preceding) as cnt_pass_not_engage
+  ,sum(passed) over (partition by student_pidm order by calendar_date rows unbounded preceding) as cnt_passed
+from jo_crs_seq 
