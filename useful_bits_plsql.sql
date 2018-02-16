@@ -151,3 +151,20 @@ select student_pidm, calendar_date
   ,sum(pass_not_engage) over (partition by student_pidm order by calendar_date rows unbounded preceding) as cnt_pass_not_engage
   ,sum(passed) over (partition by student_pidm order by calendar_date rows unbounded preceding) as cnt_passed
 from jo_crs_seq 
+
+--rolling average for last 12 rows
+select course_number, course_version, term_end_date
+  ,avg(troubles) over (partition by course_number, course_version order by term_end_date rows between 11 preceding and current row) as avg_troubles_rolling_12
+from jo_crs_rank_prep3
+where course_number = 'AFT2';
+
+--rolling average for last 12 months (when there isn't a 1 row to 1 month relationship
+select p3.course_number, p3.course_version, p3.term_end_date
+  ,avg(rp3.troubles) as average_troubles
+from jo_crs_rank_prep3 p3
+  join jo_crs_rank_prep3 rp3
+    on p3.course_number = rp3.course_number
+    and p3.course_version = rp3.course_version
+where trunc(rp3.term_end_date) >= trunc(last_day(add_months(p3.term_end_date,-12)))
+and trunc(rp3.term_end_date) <= trunc(p3.term_end_date)
+group by p3.course_number, p3.course_version, p3.term_end_date;
