@@ -158,7 +158,7 @@ select course_number, course_version, term_end_date
 from jo_crs_rank_prep3
 where course_number = 'AFT2';
 
---rolling average for last 12 months (when there isn't a 1 row to 1 month relationship
+--rolling average for last 12 months (when there isn't a 1 row to 1 month relationship)
 select p3.course_number, p3.course_version, p3.term_end_date
   ,avg(rp3.troubles) as average_troubles
 from jo_crs_rank_prep3 p3
