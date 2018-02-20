@@ -168,3 +168,6 @@ from jo_crs_rank_prep3 p3
 where trunc(rp3.term_end_date) >= trunc(last_day(add_months(p3.term_end_date,-12)))
 and trunc(rp3.term_end_date) <= trunc(p3.term_end_date)
 group by p3.course_number, p3.course_version, p3.term_end_date;
+
+--sample given percentage of code
+select * from lax_crs_duration sample(99); --number in parentheses is the sample % you are getting
