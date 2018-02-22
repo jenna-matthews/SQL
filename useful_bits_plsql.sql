@@ -171,3 +171,16 @@ group by p3.course_number, p3.course_version, p3.term_end_date;
 
 --sample given percentage of code
 select * from lax_crs_duration sample(99); --number in parentheses is the sample % you are getting
+
+--quick get non-completers (or non-[any category]
+select ass.student_pidm, ass.course_number 
+from wgubi.vw_rst_assessment ass
+  left outer join (
+    select student_pidm, course_number
+    from wgubi.vw_rst_assessment
+    --what do you want them NOT to have done?
+    where course_completion = 1
+    )fin
+    on ass.student_pidm = fin.student_pidm
+    and ass.course_number = fin.course_number
+where fin.student_pidm is NULL;
