@@ -184,3 +184,12 @@ from wgubi.vw_rst_assessment ass
     on ass.student_pidm = fin.student_pidm
     and ass.course_number = fin.course_number
 where fin.student_pidm is NULL;
+
+--using variables in PL/SQL
+variable_name [CONSTANT] datatype [NOT NULL] [:= | DEFAULT initial_value] 
+--ex
+course_number CONSTANT char(4)
+course_number CONSTANT char(4) DEFAULT 'C270'
+--set later
+course_number := 'C278'
+
