@@ -193,3 +193,5 @@ course_number CONSTANT char(4) DEFAULT 'C270'
 --set later
 course_number := 'C278'
 
+--change the size of a column -- new size must be big enough for existing data -- sql won't allow a modify if it is going to truncate
+alter table [table name] modify ([field name], [new data type/size])
