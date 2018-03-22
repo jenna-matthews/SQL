@@ -195,3 +195,14 @@ course_number := 'C278'
 
 --change the size of a column -- new size must be big enough for existing data -- sql won't allow a modify if it is going to truncate
 alter table [table name] modify ([field name], [new data type/size])
+
+--one row per day between the two dates (term_fourth_month and term_last_month)
+with maxspread as
+  (select max( term_last_month-term_fourth_month )+1 days from lax_term_months_dlu ),
+data as
+  (select level l from maxspread connect by level <= days )
+select term_fourth_month + l--, term_last_month
+from data, lax_term_months_dlu
+where l <= term_last_month-term_fourth_month
+and term_code = 201709
+order by 1;
