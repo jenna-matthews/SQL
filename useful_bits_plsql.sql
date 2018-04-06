@@ -206,3 +206,7 @@ from data, lax_term_months_dlu
 where l <= term_last_month-term_fourth_month
 and term_code = 201709
 order by 1;
+
+--change timestamp
+--if changing by days just add/subtract the int value of days
+--if changing by hours add/subtract int hours divided by 24 -- so 5 hours would be 5/24
