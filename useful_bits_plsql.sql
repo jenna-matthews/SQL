@@ -210,3 +210,8 @@ order by 1;
 --change timestamp
 --if changing by days just add/subtract the int value of days
 --if changing by hours add/subtract int hours divided by 24 -- so 5 hours would be 5/24
+
+--be able to subtract hours from a timestamp where hours is a variable (d.UTC_TIME_DIFFERENCE) 
+--this one comes from Tim Long
+,(TO_TIMESTAMP(event_date||' '||hour||':'||minute||':'||second, 'DD-Mon-RR HH24:MI:SS') - NUMTODSINTERVAL(d.UTC_TIME_DIFFERENCE, 'HOUR')) as event_tstamp
+
