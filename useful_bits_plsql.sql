@@ -215,3 +215,11 @@ order by 1;
 --this one comes from Tim Long
 ,(TO_TIMESTAMP(event_date||' '||hour||':'||minute||':'||second, 'DD-Mon-RR HH24:MI:SS') - NUMTODSINTERVAL(d.UTC_TIME_DIFFERENCE, 'HOUR')) as event_tstamp
 
+
+--pivot
+select * from (
+select coin_market, p_date_typed, price_usd from (
+select coin, coin || '_' || exchange as coin_market, p_date_typed, price_usd
+from jo_p_test3 )y
+)
+pivot (max(price_usd) for (p_date_typed) in ('09-FEB-18','10-FEB-18','11-FEB-18','12-FEB-18','13-FEB-18') )
