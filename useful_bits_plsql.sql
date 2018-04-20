@@ -223,3 +223,9 @@ select coin, coin || '_' || exchange as coin_market, p_date_typed, price_usd
 from jo_p_test3 )y
 )
 pivot (max(price_usd) for (p_date_typed) in ('09-FEB-18','10-FEB-18','11-FEB-18','12-FEB-18','13-FEB-18') )
+
+--insert multiple rows
+INSERT ALL
+  INTO mytable (column1, column2, column_n) VALUES (expr1, expr2, expr_n)
+  INTO mytable (column1, column2, column_n) VALUES (expr1, expr2, expr_n)
+  INTO mytable (column1, column2, column_n) VALUES (expr1, expr2, expr_n)
