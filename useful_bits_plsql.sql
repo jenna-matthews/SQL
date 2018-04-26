@@ -91,6 +91,9 @@ least([date1],[date2])
 
 --last day of previous month (truncate if matching to another truncated date)
 last_day(add_months(sysdate,-1))
+--first day
+trunc((quarter_end_date),'month') as release_cutoff
+
 
 --create index on student_pidm & term_code combination
 CREATE UNIQUE INDEX stud_dur3 ON LAX_STUD_DURATION_PREP3(student_pidm, term_code, course_number);
