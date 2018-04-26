@@ -229,3 +229,8 @@ INSERT ALL
   INTO mytable (column1, column2, column_n) VALUES (expr1, expr2, expr_n)
   INTO mytable (column1, column2, column_n) VALUES (expr1, expr2, expr_n)
   INTO mytable (column1, column2, column_n) VALUES (expr1, expr2, expr_n)
+
+--remove red circle with white X
+--first try recompiling the view
+ALTER VIEW MY_VIEW COMPILE;
+--next check for tables that the view references 
