@@ -233,4 +233,5 @@ INSERT ALL
 --remove red circle with white X
 --first try recompiling the view
 ALTER VIEW MY_VIEW COMPILE;
---next check for tables that the view references 
+--next check for tables that the view references (when recompiling Oracle doesn't give the 'table or view doesn't exist' error even if one of the referenced tables isn't there.)
+
