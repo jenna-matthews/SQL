@@ -227,6 +227,16 @@ from jo_p_test3 )y
 )
 pivot (max(price_usd) for (p_date_typed) in ('09-FEB-18','10-FEB-18','11-FEB-18','12-FEB-18','13-FEB-18') )
 
+--pivot multiple 
+create table JO_WR_1ST_C459_C278_P as
+select * from (
+select student_pidm, ca1_course_comp, ca1_comp_score, ca2_course_comp, ca2_comp_score from (
+select *
+from jo_wr_1st_C459_C278 )y
+)
+pivot (max(ca1_comp_score) for (CA1_COURSE_COMP) in ('C459-1','C459-2','C459-3','C459-4','C459-5','C459-6'))
+pivot (max(ca2_comp_score) for (CA2_COURSE_COMP) in ('C278-1','C278-2','C278-3','C278-4','C278-5','C278-6'))
+
 --insert multiple rows
 INSERT ALL
   INTO mytable (column1, column2, column_n) VALUES (expr1, expr2, expr_n)
