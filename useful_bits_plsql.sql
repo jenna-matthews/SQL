@@ -248,3 +248,5 @@ INSERT ALL
 ALTER VIEW MY_VIEW COMPILE;
 --next check for tables that the view references (when recompiling Oracle doesn't give the 'table or view doesn't exist' error even if one of the referenced tables isn't there.)
 
+--find all of the synonyms
+select * from sys.synonyms;
