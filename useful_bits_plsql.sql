@@ -237,6 +237,24 @@ from jo_wr_1st_C459_C278 )y
 pivot (max(ca1_comp_score) for (CA1_COURSE_COMP) in ('C459-1','C459-2','C459-3','C459-4','C459-5','C459-6'))
 pivot (max(ca2_comp_score) for (CA2_COURSE_COMP) in ('C278-1','C278-2','C278-3','C278-4','C278-5','C278-6'))
 
+--pivot with alias (from https://stackoverflow.com/questions/22103060/oracle-pivot-query-gives-columns-with-quotes-around-the-column-names-what answer by ShoeLace)
+with testdata as
+(
+    select 'Fred' First_Name, 10 Items from dual
+    union
+    select 'John' First_Name, 5  Items from dual
+    union 
+    select 'Jane' First_Name, 12 Items from dual
+    union
+    select 'Fred' First_Name, 15 Items from dual
+)
+select * from testdata
+pivot (
+      sum(Items) 
+      for First_Name
+      in ('Fred' as fred,'John' as john,'Jane' as jane)
+      )
+
 --insert multiple rows
 INSERT ALL
   INTO mytable (column1, column2, column_n) VALUES (expr1, expr2, expr_n)
