@@ -268,3 +268,6 @@ ALTER VIEW MY_VIEW COMPILE;
 
 --find all of the synonyms
 select * from sys.synonyms;
+
+--The way Oracle handles ISNUMERIC ISSTUPID
+where (LENGTH(TRIM(TRANSLATE(answer,' +-.0123456789', ' '))) > 1);
