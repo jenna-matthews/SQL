@@ -271,3 +271,8 @@ select * from sys.synonyms;
 
 --The way Oracle handles ISNUMERIC ISSTUPID
 where (LENGTH(TRIM(TRANSLATE(answer,' +-.0123456789', ' '))) > 1);
+
+--percentiles
+select percentile_cont(0.25) within group (order by item_duration asc) percentile_25
+  ,percentile_cont(0.75) within group (order by item_duration asc) percentile_75
+from wgubi.vw_rst_objective_assessment;  
