@@ -17,6 +17,11 @@ t.Column_Name AS column_name, t.nullable
 FROM sys.all_tab_columns t
 WHERE t.Table_Name = 'ACTIVE_ASMT';
 
+--if the table is a remote one
+select column_name
+  from all_tab_columns@WGUBI_PRDLOG
+ where table_name = 'USERS';
+
 --update based on join -- requires privileges to update sys tables
 update  
  (
