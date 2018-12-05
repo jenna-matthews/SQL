@@ -21,6 +21,11 @@ WHERE t.Table_Name = 'ACTIVE_ASMT';
 select column_name
   from all_tab_columns@WGUBI_PRDLOG
  where table_name = 'USERS';
+ 
+--use to identify CLOB fields (cause problems)
+select *
+  from all_tab_columns@WGUBI_PRDLOG
+ where table_name = 'COURSES_COSB'; 
 
 --update based on join -- requires privileges to update sys tables
 update  
