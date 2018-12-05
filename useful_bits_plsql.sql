@@ -25,7 +25,8 @@ select column_name
 --use to identify CLOB fields (cause problems)
 select *
   from all_tab_columns@WGUBI_PRDLOG
- where table_name = 'COURSES_COSB'; 
+ where table_name = 'COURSES_COSB'
+ and data_type != 'CLOB'; 
 
 --update based on join -- requires privileges to update sys tables
 update  
