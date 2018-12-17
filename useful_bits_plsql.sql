@@ -287,3 +287,7 @@ where (LENGTH(TRIM(TRANSLATE(answer,' +-.0123456789', ' '))) > 1);
 select percentile_cont(0.25) within group (order by item_duration asc) percentile_25
   ,percentile_cont(0.75) within group (order by item_duration asc) percentile_75
 from wgubi.vw_rst_objective_assessment;  
+
+--epoch to date
+ select completion_date, to_char(to_date('19700101', 'YYYYMMDD') + ( 1 / 24 / 60 / 60 / 1000) * completion_date, 'YYYY-MM-DD HH24:MI:SS') as new_date
+from mhe_vyc1;                  
