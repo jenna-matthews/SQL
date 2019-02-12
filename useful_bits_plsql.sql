@@ -165,6 +165,11 @@ select student_pidm, calendar_date
   ,sum(pass_not_engage) over (partition by student_pidm order by calendar_date rows unbounded preceding) as cnt_pass_not_engage
   ,sum(passed) over (partition by student_pidm order by calendar_date rows unbounded preceding) as cnt_passed
 from jo_crs_seq 
+                                    
+--running totals in both directions - can be in the same query!!!
+  ,sum(cm_contact_other) over (partition by student_pidm, term_code, course_number order by calendar_date rows unbounded preceding) as CI_Contact_pre_critical
+  ,sum(cm_contact_other) over (partition by student_pidm, term_code, course_number order by calendar_date desc rows unbounded preceding) as CI_Contact_post_critical
+                                      
 
 --rolling average for last 12 rows
 select course_number, course_version, term_end_date
