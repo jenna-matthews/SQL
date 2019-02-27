@@ -296,3 +296,8 @@ from wgubi.vw_rst_objective_assessment;
 --epoch to date
  select completion_date, to_char(to_date('19700101', 'YYYYMMDD') + ( 1 / 24 / 60 / 60 / 1000) * completion_date, 'YYYY-MM-DD HH24:MI:SS') as new_date
 from mhe_vyc1;                  
+
+ --deal with T & +00:00 in timestamp
+  to_timestamp_tz(event_timestamp, 'YYYY-MM-DD"T"HH24:MI:SS.ff6"+"TZH:TZM') as event_date
+                   
+                   
