@@ -300,4 +300,21 @@ from mhe_vyc1;
  --deal with T & +00:00 in timestamp
   to_timestamp_tz(event_timestamp, 'YYYY-MM-DD"T"HH24:MI:SS.ff6"+"TZH:TZM') as event_date
                    
-                   
+--looking for constraints in the process of cleaning up tables                   
+select table_name, constraint_name, status, owner
+from all_constraints
+where r_owner = 'WGUBISELECT'
+and constraint_type = 'R'
+and r_constraint_name in
+ (
+   select constraint_name from all_constraints
+   where constraint_type in ('P', 'U')
+   and table_name = 'LAX_STUD_TERM_SUMMARY'
+   and owner = 'WGUBISELECT'
+ )
+order by table_name, constraint_name;
+
+SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'LAX_STUD_TERM_SUMMARY';
+
+
+
