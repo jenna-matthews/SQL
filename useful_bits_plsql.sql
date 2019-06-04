@@ -316,5 +316,6 @@ order by table_name, constraint_name;
 
 SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'LAX_STUD_TERM_SUMMARY';
 
-
+--get substring from the end of the string
+select substr(studentid,-6)                 
 
