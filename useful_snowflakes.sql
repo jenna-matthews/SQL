@@ -24,3 +24,6 @@ pivot(max(records) for outcome IN ('dfw', 'pass')) as p;
 --date add (in this case adding six days to the date field)
 dateadd(day,6,START_DATE)
                                    
+--regex expressions
+--in this example pulling the exercise number from a field in this structure "chapter 10 section 4 exercise 31"                                   
+regexp_substr(chapter_section_exercise, 'exercise\\W+(\\w+)', 1, 1, 'e', 1) as "exercise"                                    
