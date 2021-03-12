@@ -15,3 +15,9 @@ select cluster_name, outcome, records from (
 select *
 from /table name here/ )y
 ) pivot (max(records) for outcome in ('dfw','pass'));
+
+--pivot with alias (to deal with the issue of quoted strings as column names
+select cluster_name, "'pass'" AS passed, "'dfw'" AS failed 
+from /table name here/
+pivot(max(records) for outcome IN ('dfw', 'pass')) as p;                                      
+                                    
