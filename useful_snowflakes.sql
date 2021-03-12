@@ -8,3 +8,10 @@ and t.ROW_COUNT > 0;
 --change default role for the server
 --avoids the nuisance of switching, plus it's useful for connecting other applications like Tableau
 alter user SET DEFAULT_ROLE = (name of the role that should be the default)
+
+--pivot (slightly different syntax)
+select * from (
+select cluster_name, outcome, records from (
+select *
+from /table name here/ )y
+) pivot (max(records) for outcome in ('dfw','pass'));
