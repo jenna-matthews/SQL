@@ -21,3 +21,6 @@ select cluster_name, "'pass'" AS passed, "'dfw'" AS failed
 from /table name here/
 pivot(max(records) for outcome IN ('dfw', 'pass')) as p;                                      
                                     
+--date add (in this case adding six days to the date field)
+dateadd(day,6,START_DATE)
+                                   
