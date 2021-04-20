@@ -27,3 +27,6 @@ dateadd(day,6,START_DATE)
 --regex expressions
 --in this example pulling the exercise number from a field in this structure "chapter 10 section 4 exercise 31"                                   
 regexp_substr(chapter_section_exercise, 'exercise\\W+(\\w+)', 1, 1, 'e', 1) as "exercise"                                    
+
+--snowflake doesn't support now() - use current_date() function instead
+and "Assignment Due Date" <= current_date()                                   
