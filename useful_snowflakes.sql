@@ -30,3 +30,7 @@ regexp_substr(chapter_section_exercise, 'exercise\\W+(\\w+)', 1, 1, 'e', 1) as "
 
 --snowflake doesn't support now() - use current_date() function instead
 and "Assignment Due Date" <= current_date()                                   
+
+--alternative option to cast
+message:autobahnMetadata:receivedDt::datetime -- the ::datetime casts the field as a datetime data type                                   
+                                 
