@@ -34,3 +34,9 @@ and "Assignment Due Date" <= current_date()
 --alternative option to cast
 message:autobahnMetadata:receivedDt::datetime -- the ::datetime casts the field as a datetime data type                                   
                                  
+--charindex code
+charindex('!',feedback)
+                                   
+--substrings start at 1 NOT 0 
+--this is taking the substring up to - and including - the first period                                   
+substring(feedback,1,charindex('.',feedback) + 1)                                   
