@@ -1,0 +1,2 @@
+--matching data from two columns
+=IF(ISNA(MATCH(A2,C:C,0)),"",INDEX(C:C,MATCH(A2,C:C,0)))
