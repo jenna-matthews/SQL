@@ -40,3 +40,9 @@ charindex('!',feedback)
 --substrings start at 1 NOT 0 
 --this is taking the substring up to - and including - the first period                                   
 substring(feedback,1,charindex('.',feedback) + 1)                                   
+
+--connecting to snowflake from sagemaker
+-- Open a terminal instance from Jupyter
+-- Install the libffi-devel package ( sudo yum install libffi-devel )
+-- Open a new notebook (I used the conda_python3 kernel)
+-- In the notebook, install with !pip install snowflake-connector-python
