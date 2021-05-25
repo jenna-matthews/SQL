@@ -39,7 +39,10 @@ charindex('!',feedback)
                                    
 --substrings start at 1 NOT 0 
 --this is taking the substring up to - and including - the first period                                   
-substring(feedback,1,charindex('.',feedback) + 1)                                   
+substring(feedback,1,charindex('.',feedback) + 1)               
+
+--converting from epoch time (data might measure in seconds not milliseconds, if milliseconds, add " / 1000" after the "/ 60 / 60" for the calculation)
+to_char(to_date('19700101', 'YYYYMMDD') + ( 1 / 24 / 60 / 60 ) * startedon, 'YYYY-MM-DD HH24:MI:SS') as new_date 
 
 --connecting to snowflake from sagemaker
 -- Open a terminal instance from Jupyter
