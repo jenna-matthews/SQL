@@ -1,2 +1,5 @@
 --matching data from two columns
 =IF(ISNA(MATCH(A2,C:C,0)),"",INDEX(C:C,MATCH(A2,C:C,0)))
+
+--looks for match of S2 in U and places the value from V where that match occurs
+=IF(ISNA(MATCH(S2,U:U,0)),"",INDEX(V:V,MATCH(S2,U:U,0)))
