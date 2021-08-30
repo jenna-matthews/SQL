@@ -49,3 +49,6 @@ to_char(to_date('19700101', 'YYYYMMDD') + ( 1 / 24 / 60 / 60 ) * startedon, 'YYY
 -- Install the libffi-devel package ( sudo yum install libffi-devel )
 -- Open a new notebook (I used the conda_python3 kernel)
 -- In the notebook, install with !pip install snowflake-connector-python
+
+--converting timezones -- use https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for reference
+    ,convert_timezone('UTC','America/New_York', last_session_end) as last_session_end
