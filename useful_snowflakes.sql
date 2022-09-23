@@ -52,3 +52,6 @@ to_char(to_date('19700101', 'YYYYMMDD') + ( 1 / 24 / 60 / 60 ) * startedon, 'YYY
 
 --converting timezones -- use https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for reference
     ,convert_timezone('UTC','America/New_York', last_session_end) as last_session_end
+
+--combining multiple records into a list in one record
+LISTAGG(distinct catalog, '; ') WITHIN GROUP ( order by catalog ) as fall_math_enrollments
